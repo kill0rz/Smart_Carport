@@ -1,0 +1,15 @@
+Sollte alles geklappt haben, dann kann man die Temperatur folgendermaßen auslesen:
+sudo ./loldht 7
+Raspberry Pi wiringPi DHT22 reader
+www.lolware.net
+Data not good, skip
+Humidity = 57.60 % Temperature = 20.40 *C
+
+
+
+
+Wobei die „7“ hinter dem Befehl den wiringPi Pin angibt. Falls man den Sensor an einen anderen Pin als GPIO 4 (wiringPi Pin 7) angeschlossen hat, muss man die Zahl hier entsprechend anpassen. Die wiringPi Pin-Zuordnung ist auf der Wiring Pi Pin Seite zu finden.
+
+Wie in der Ausgabe zu sehen ist, kann es vorkommen, dass ab und zu „Data not good, skip“ erscheint. Dies passiert immer dann, wenn die Daten nicht richtig empfangen worden konnten, weil es einen Fehler beim Auslesen gab. Der Sensor kann auch höchstens alle 2 Sekunden abgefragt werden.
+
+Der nächste Schritt ist natürlich die Daten zu loggen und auszuwerten. Das kommt hoffentlich bald.

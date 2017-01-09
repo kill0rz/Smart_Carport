@@ -1,0 +1,51 @@
+Als Basis wird folgendes OS genutzt: 2016-11-25-raspbian-jessie-lite.img
+
+Alle Passwörter, die genutzt werden: a
+IP: 192.168.1.31 mit Alias rpi
+
+
+1) SSH aktivieren über die grafische Oberfläche und raspi-config
+
+2) LogIn über SSH mit user rpi, um Zugriff für Root zu ermöglichen:
+	>> sudo nano /etc/ssh/sshd_config
+	Suche nach PermitRootLogin
+	Ändere zu yes
+
+3) LogIn als root über SSH
+	Benötigte und nützliche Software nachinstallieren
+	>> apt update && apt -y upgrade
+	>> apt install pydf screen nano apache2 mariadb-server mariadb-client phpmyadmin git-core mpg123 htop
+
+	PHP7.0 installieren
+	>> nano /etc/apt/sources.list
+	-->
+		deb http://mirrordirector.raspbian.org/raspbian/ stretch main contrib non-free rpi
+	>> nano /etc/apt/preferences
+	-->
+		Package: *
+		Pin: release n=jessie
+		Pin-Priority: 600
+	>> apt update && apt install -y -t stretch php7.0 php7.0-curl php7.0-gd php7.0-fpm php7.0-cli php7.0-opcache php7.0-mbstring php7.0-xml php7.0-zip
+
+	WiringPi installieren
+	>> cd && git clone git://git.drogon.net/wiringPi
+	>> cd ~/wiringPi
+	>> git pull origin
+	>> ./build
+
+	Alle Dateien in der angegebenen Struktur hochladen.
+
+	Rechte geben
+	>> cd /root/ && chmod 0777 *.sh
+	>> cd /root/sh/ && chmod 0777 *.sh
+
+	Neustarten
+	>> reboot
+
+	Crontab aufbauen
+	>> crontab -e
+	-->
+		#@reboot /root/sh/button.sh
+		@reboot /root/sh/m.sh
+		@reboot /root/sh/timecontrol.sh
+		@reboot /root/sh/zsh.sh
