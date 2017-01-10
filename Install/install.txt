@@ -3,6 +3,8 @@ Als Basis wird folgendes OS genutzt: 2016-11-25-raspbian-jessie-lite.img
 Alle Passwörter, die genutzt werden: a
 IP: 192.168.1.31 mit Alias rpi
 
+Diese Datei behandelt nur die Software-Installation. Für die Hardwareverkabelung siehe den entsprechenden Ordner! Es sollte zuerst die Hardwareverkabelung bei ausgeschaltetem Pi vorgenommen werden.
+
 
 1) SSH aktivieren über die grafische Oberfläche und raspi-config
 
@@ -47,7 +49,6 @@ IP: 192.168.1.31 mit Alias rpi
 	Crontab aufbauen
 	>> crontab -e
 	-->
-		#@reboot /root/sh/button.sh
 		@reboot /root/sh/m.sh
 		@reboot /root/sh/timecontrol.sh
 		@reboot /root/sh/zsh.sh
