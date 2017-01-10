@@ -1,6 +1,6 @@
 <?php
 
-$debug = true;
+$debug = false;
 $mysql_server = "localhost";
 $mysql_user = "root";
 $mysql_password = "a";

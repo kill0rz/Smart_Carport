@@ -1,4 +1,4 @@
 #!/bin/sh
 
-cd /var/www/html/deutschland/
-php do.php >> deutschland.log
+cd /var/www/html/button/
+php do.php >> button.log
