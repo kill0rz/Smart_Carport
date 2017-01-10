@@ -7,10 +7,6 @@ Im konkreten Anwendungsfall steht das originale Setup in einer Garage, die Zeits
 
 Es ist möglich, diese Anwendung auf einen neueren Pi zu porten, dann müssen aber die Pins aktualisiert werden. Pull requests sind gerne sehen.
 
-
-# WICHTIG!!
-Dieses Repo hier ist noch nicht fertig, die Anleitung noch nicht vollständig und die Dateien werden nach dem Setup vermutlich noch nicht funktionieren. Abwarten, bis es fertig ist!!
-
 # Sicherheit
 Das Projekt wurde mit minimaler Sicherheitsstufe umgesetzt, da es sich nur um ein Beispielsetup handelt. Es werden keine sensiblen Daten gespeichert, dennoch müssen Passwörter sicher gewählt werden.
 
@@ -26,3 +22,7 @@ Sa 07Uhr
 So 09Uhr
 
 Wird dieses Verhalten nicht gebraucht, wird einfach nur der Crontabronjob auskommentiert.
+
+# ToDo
++ Temperatursensor und Feuchtigkeitssensor implementieren.
++ Button implementieren
