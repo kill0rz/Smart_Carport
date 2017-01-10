@@ -2,7 +2,7 @@
 
 error_reporting(E_ALL);
 header("Access-Control-Allow-Origin: *");
-$debug = true;
+$debug = false;
 $runned = 0;
 $paused = 0;
 

@@ -25,10 +25,17 @@ while (true) {
 			@shell_exec("sudo gpio -g write 25 1");
 			sleep(2);
 			@shell_exec("sudo killall mpg123");
+			if ($debug) {
+				echo "Starting to play: " . $row->realname . "\n";
+			}
 			@shell_exec("sudo mpg123 /tmp/mp3files/" . basename($row->filepath) . " >> /root/sh/m_player.log");
 			$sql = "DELETE FROM tbl_queue WHERE ID='" . $row->ID . "';";
 			mysqli_query($db, $sql);
 			unlink($row->filepath);
+
+			if ($debug) {
+				echo "finished and deleted\n";
+			}
 
 			//check if anlassen
 			$result = get_queue();
