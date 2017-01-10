@@ -44,7 +44,13 @@ Diese Datei behandelt nur die Software-Installation. Für die Hardwareverkabelun
 	Datenbank aus .\Install\Files_to_install\Databases\pi_dbs.sql via phpmyadmin importieren
 
 	Rechte setzen:
-	>> cd /var/www/html/timecontrol/ && chmod 0755 *.data
+	>> cd /var/www/html/timecontrol/ && chmod 0777 *.data
+
+	PHP sudo-Recthe geben:
+	>> visudo
+		Füge am Ende hinzu:
+		-->
+			www-data  ALL=(ALL) NOPASSWD: ALL
 
 	Crontab aufbauen
 	>> crontab -e
