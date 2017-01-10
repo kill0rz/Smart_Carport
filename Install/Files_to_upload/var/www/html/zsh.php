@@ -81,7 +81,7 @@ if ($werte->is_running == 1 && $werte->runforever == 0 && $werte->stopnow == 0) 
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel=stylesheet href="./bootstrap.min.css">
-		<title>ZSH Garage 84</title>
+		<title>ZSH</title>
 		<script>
 		var i = <?php echo $werte->runned; ?>;
 		var j = <?php echo $werte->time_to_run; ?>;
