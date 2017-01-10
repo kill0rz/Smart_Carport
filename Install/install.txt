@@ -6,7 +6,7 @@ IP: 192.168.1.31 mit Alias rpi
 
 1) SSH aktivieren über die grafische Oberfläche und raspi-config
 
-2) LogIn über SSH mit user rpi, um Zugriff für Root zu ermöglichen:
+2) LogIn über SSH mit user pi, um Zugriff für Root zu ermöglichen:
 	>> sudo nano /etc/ssh/sshd_config
 	Suche nach PermitRootLogin
 	Ändere zu yes
