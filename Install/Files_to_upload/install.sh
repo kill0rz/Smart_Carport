@@ -20,7 +20,7 @@ cd ~/wiringPi
 git pull origin
 ./build
 
-echo ">>>> Setting right permissions..."
+echo ">>>> Setting permissions..."
 cd /root/ && chmod 0777 *.sh
 cd /root/sh/ && chmod 0777 *.sh
 cd /var/www/html/timecontrol/ && chmod 0777 *.data
