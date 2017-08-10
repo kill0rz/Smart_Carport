@@ -13,6 +13,9 @@ Diese Datei behandelt nur die Software-Installation. Für die Hardwareverkabelun
 	Suche nach PermitRootLogin
 	Ändere zu yes
 
+	Gleich noch das Passwort vom root ändern:
+	>> sudo passwd root
+
 3) LogIn als root über SSH
 	Benötigte und nützliche Software nachinstallieren
 	>> apt update && apt -y upgrade
