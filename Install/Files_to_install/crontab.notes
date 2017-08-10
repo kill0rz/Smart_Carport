@@ -1,4 +1,0 @@
-#@reboot /root/sh/button.sh
-@reboot /root/sh/m.sh
-@reboot /root/sh/timecontrol.sh
-@reboot /root/sh/zsh.sh

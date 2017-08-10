@@ -22,20 +22,11 @@ Diese Datei behandelt nur die Software-Installation. Für die Hardwareverkabelun
 	Install-Skript ausführen.
 	>> cd / && chmod +x install.sh && ./install.sh
 
-	Datenbank aus .\Install\Files_to_install\Databases\pi_dbs.sql via phpmyadmin importieren
-
 	PHP sudo-Rechte geben:
 	>> visudo
 		Füge am Ende hinzu:
 		-->
 			www-data  ALL=(ALL) NOPASSWD: ALL
-
-	Crontab aufbauen
-	>> crontab -e
-	-->
-		@reboot /root/sh/m.sh
-		@reboot /root/sh/timecontrol.sh
-		@reboot /root/sh/zsh.sh
 
 	Neustarten
 	>> reboot

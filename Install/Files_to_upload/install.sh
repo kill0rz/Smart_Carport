@@ -25,6 +25,15 @@ cd /root/ && chmod 0777 *.sh
 cd /root/sh/ && chmod 0777 *.sh
 cd /var/www/html/timecontrol/ && chmod 0777 *.data
 
+echo ">>>> Creating and importing databses..."
+mysql -uroot -p < /tmp/pi_dbs.sql
+
+echo ">>>> Creating new crontab..."
+(crontab -l 2>/dev/null; echo "#@reboot /root/sh/button.sh") | crontab -
+(crontab -l 2>/dev/null; echo "@reboot /root/sh/m.sh") | crontab -
+(crontab -l 2>/dev/null; echo "@reboot /root/sh/timecontrol.sh") | crontab -
+(crontab -l 2>/dev/null; echo "@reboot /root/sh/zsh.sh") | crontab -
+
 echo ">>>> Restarting services..."
 service mysql restart
 service apache2 restart
