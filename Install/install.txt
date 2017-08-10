@@ -17,37 +17,12 @@ Diese Datei behandelt nur die Software-Installation. Für die Hardwareverkabelun
 	>> sudo passwd root
 
 3) LogIn als root über SSH
-	Benötigte und nützliche Software nachinstallieren
-	>> apt update && apt -y upgrade
-	>> apt install pydf screen nano apache2 mariadb-server mariadb-client phpmyadmin git-core mpg123 htop mutt
-
-	PHP7.0 installieren
-	>> nano /etc/apt/sources.list
-	-->
-		deb http://mirrordirector.raspbian.org/raspbian/ stretch main contrib non-free rpi
-	>> nano /etc/apt/preferences
-	-->
-		Package: *
-		Pin: release n=jessie
-		Pin-Priority: 600
-	>> apt update && apt install -y -t stretch php7.0 php7.0-curl php7.0-gd php7.0-fpm php7.0-cli php7.0-opcache php7.0-mbstring php7.0-xml php7.0-zip
-
-	WiringPi installieren
-	>> cd && git clone git://git.drogon.net/wiringPi
-	>> cd ~/wiringPi
-	>> git pull origin
-	>> ./build
-
 	Alle Dateien in der angegebenen Struktur hochladen.
 
-	Rechte geben
-	>> cd /root/ && chmod 0777 *.sh
-	>> cd /root/sh/ && chmod 0777 *.sh
+	Install-Skript ausführen.
+	>> cd / && chmod +x install.sh && ./install.sh
 
 	Datenbank aus .\Install\Files_to_install\Databases\pi_dbs.sql via phpmyadmin importieren
-
-	Rechte setzen:
-	>> cd /var/www/html/timecontrol/ && chmod 0777 *.data
 
 	PHP sudo-Rechte geben:
 	>> visudo
@@ -64,6 +39,5 @@ Diese Datei behandelt nur die Software-Installation. Für die Hardwareverkabelun
 
 	Neustarten
 	>> reboot
-
 
 	FERTIG!!
