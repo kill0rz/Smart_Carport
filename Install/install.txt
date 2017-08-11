@@ -22,13 +22,6 @@ Diese Datei behandelt nur die Software-Installation. Für die Hardwareverkabelun
 	Install-Skript ausführen.
 	>> cd / && chmod +x install.sh && ./install.sh
 
-	PHP sudo-Rechte geben:
-	>> visudo
-		Füge am Ende hinzu:
-		-->
-			www-data  ALL=(ALL) NOPASSWD: ALL
-
-	Neustarten
-	>> reboot
+	Der Pi startet neu.
 
 	FERTIG!!

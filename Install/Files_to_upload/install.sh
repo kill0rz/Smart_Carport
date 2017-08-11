@@ -12,7 +12,7 @@ echo ">>>> Updating installed packages..."
 apt update && apt -y upgrade && apt -y dist-upgrade && apt -y autoremove
 
 echo ">>>> Installing required and optional software..."
-apt install -y pydf screen nano apache2 mariadb-server mariadb-client phpmyadmin git-core mpg123 htop mutt php7.1 php7.1-curl php7.1-gd php7.1-fpm php7.1-cli php7.1-opcache php7.1-mbstring php7.1-xml php7.1-zip
+apt install -y pydf screen nano apache2 mariadb-server mariadb-client phpmyadmin git-core mpg123 htop mutt build-essential python-dev python3-dev php7.1 php7.1-curl php7.1-gd php7.1-fpm php7.1-cli php7.1-opcache php7.1-mbstring php7.1-xml php7.1-zip
 
 echo ">>>> Installing WiringPi..."
 cd && git clone git://git.drogon.net/wiringPi
@@ -20,10 +20,15 @@ cd ~/wiringPi
 git pull origin
 ./build
 
+echo ">>>> Installing Adafruit Python DHT Sensor Library..."
+cd && git clone https://github.com/adafruit/Adafruit_Python_DHT.git
+cd ~/Adafruit_Python_DHT && python setup.py install
+
 echo ">>>> Setting permissions..."
 cd /root/ && chmod 0777 *.sh
 cd /root/sh/ && chmod 0777 *.sh
 cd /var/www/html/timecontrol/ && chmod 0777 *.data
+echo 'www-data  ALL=(ALL) NOPASSWD: ALL' | sudo EDITOR='tee -a' visudo
 
 echo ">>>> Creating and importing databses..."
 mysql -uroot -p < /tmp/pi_dbs.sql
@@ -42,4 +47,5 @@ echo ">>>> Cleaning up..."
 apt-get autoremove -y
 apt-get clean
 
-echo ">>>> Almost done! Now follow instructions from install.txt!"
+echo ">>>> Almost done! Rebooting now..."
+reboot
