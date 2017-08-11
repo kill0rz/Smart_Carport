@@ -39,6 +39,7 @@ service mysql restart
 service apache2 restart
 
 echo ">>>> Cleaning up..."
-apt clean
+apt-get autoremove -y
+apt-get clean
 
 echo ">>>> Almost done! Now follow instructions from install.txt!"
