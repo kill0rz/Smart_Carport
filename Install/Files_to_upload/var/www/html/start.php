@@ -58,7 +58,7 @@ while (true) {
 
 	if ($feuchtsens_use) {
 		//check sensor
-		$sensor_output = shell_exec("sudo /root/ex/sensor.sh");
+		$sensor_output = shell_exec("sudo /root/sh/sensor.sh");
 		preg_match_all("/Humidity = [0-9]{2}\.[0-9]{2} %/", $sensor_output, $matches, PREG_OFFSET_CAPTURE);
 
 		foreach ($matches[0] as $value) {
