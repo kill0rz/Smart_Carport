@@ -14,8 +14,7 @@ CREATE TABLE IF NOT EXISTS `tbl_settings` (
   `should_be_running` int(11) NOT NULL DEFAULT '0',
   `runned` int(11) DEFAULT '0',
   `paused` int(11) DEFAULT '0',
-  `feuchtsens_use` int(11) NOT NULL,
-  `tempsens_use` int(11) NOT NULL,
+  `tempfeuchtsens_use` int(11) NOT NULL,
   `tempsens_temp` int(11) NOT NULL,
   `feuchtsens_feucht` int(11) NOT NULL,
   `time_to_pause` double NOT NULL

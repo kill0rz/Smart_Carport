@@ -23,12 +23,12 @@ if (isset($_POST['action']) && trim($_POST['action']) != '') {
 			file($pi_url . "/set/startnewintervall/?value=1");
 			break;
 
-		case 'tempsens_use':
-			file($pi_url . "/set/tempsens_use/?value=1");
+		case 'tempfeuchtsens_use_on':
+			file($pi_url . "/set/tempfeuchtsens_use/?value=1");
 			break;
 
-		case 'feuchtsens_use':
-			file($pi_url . "/set/feuchtsens_use/?value=1");
+		case 'tempfeuchtsens_use_off':
+			file($pi_url . "/set/tempfeuchtsens_use/?value=0");
 			break;
 	}
 }
@@ -60,7 +60,7 @@ if ($werte->runforever == 1) {
 	$runforever_pic = $bildurl . $bildaus;
 }
 
-if ($werte->tempsens_use == 1) {
+if ($werte->tempfeuchtsens_use == 1) {
 	$tempsens_pic = $bildurl . $bildan;
 } else {
 	$tempsens_pic = $bildurl . $bildaus;
@@ -135,19 +135,19 @@ if ($startnewintervall_pic == $bildurl . $bildan) {
 				<br />
 				<form action="./zsh.php" method="post" accept-charset="utf-8">
 					<input type="hidden" name="action" value="startnewintervall">
-					<button class="btn" type="submit">Starte neues Intervall</button>
+					<button class="btn" type="submit">Intervallschaltung</button>
 					<img class="link" src="<?php echo $startnewintervall_pic; ?>" alt="startnewintervall_pic">
 				</form>
 				<br />
 			</div>
 			<form action="/zsh.php" method="post" accept-charset="utf-8">
-				<input type="number" name="startnewintervalltime" value="<?php echo $werte->time_to_run; ?>" min="1" placeholder="3600">
+				<input type="number" style="width: 5em;" name="startnewintervalltime" value="<?php echo $werte->time_to_run; ?>" min="1" placeholder="3600">
 				<input type="submit" name="submitted" value="Timer speichern">
 			</form>
 			<br />
 			<br />
 			<form action="/zsh.php" method="post" accept-charset="utf-8">
-				<input type="number" name="time_to_pause" value="<?php echo $werte->time_to_pause; ?>" min="0" placeholder="3600">
+				<input type="number" style="width: 5em;" name="time_to_pause" value="<?php echo $werte->time_to_pause; ?>" min="0" placeholder="3600">
 				<input type="submit" name="submitted" value="Pause speichern">
 			</form>
 			<br />
@@ -155,21 +155,35 @@ if ($startnewintervall_pic == $bildurl . $bildan) {
 			<div class="link">
 				<br />
 				<form action="./zsh.php" method="post" accept-charset="utf-8">
-					<input type="hidden" name="action" value="tempsens_use">
-					<button class="btn" type="submit" disabled>Aktiviere Temperatursensor</button>
+											<?php
+if ($werte->tempfeuchtsens_use == 1) {
+	echo '<input type="hidden" name="action" value="tempfeuchtsens_use_off">';
+} else {
+	echo '<input type="hidden" name="action" value="tempfeuchtsens_use_on">';
+}
+?>
+
+					<button class="btn" type="submit">
+						<?php
+if ($werte->tempfeuchtsens_use == 1) {
+	echo "Deaktiviere Temperatur-/Feuchtigkeitssensor";
+} else {
+	echo "Aktiviere Temperatur-/Feuchtigkeitssensor";
+}
+?></button>
 					<img class="link" src="<?php echo $tempsens_pic; ?>" alt="tempsens_pic">
 				</form>
 				<br />
 			</div>
 			<form action="/zsh.php" method="post" accept-charset="utf-8">
-				<input type="number" name="tempsens_temp" value="<?php echo $werte->tempsens_temp; ?>" min="1" placeholder="20" disabled>
-				<input type="submit" name="submitted" value="Temperatur speichern" disabled>
+				<input type="number" style="width: 3em;" name="tempsens_temp" value="<?php echo $werte->tempsens_temp; ?>" min="-20" max="40" placeholder="20">&deg;C
+				<input type="submit" name="submitted" value="Temperatur speichern">
 			</form>
 			<br />
 			<br />
 			<form action="/zsh.php" method="post" accept-charset="utf-8">
-				<input type="number" name="feuchtsens_feucht" value="<?php echo $werte->feuchtsens_feucht; ?>" min="0" placeholder="50" disabled>%
-				<input type="submit" name="submitted" value="Luftfeuchtigkeit speichern" disabled>
+				<input type="number" style="width: 3em;" name="feuchtsens_feucht" value="<?php echo $werte->feuchtsens_feucht; ?>" min="0" max="100" placeholder="50">%
+				<input type="submit" name="submitted" value="Luftfeuchtigkeit speichern">
 			</form>
 			<br />
 			<br />

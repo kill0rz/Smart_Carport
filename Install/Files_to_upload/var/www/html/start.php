@@ -22,8 +22,7 @@ while (true) {
 		$runforever = $row->runforever == 1;
 		$startnewintervall = $row->startnewintervall == 1;
 		$stopnow = $row->stopnow == 1;
-		$feuchtsens_use = $row->feuchtsens_use == 1;
-		$tempsens_use = $row->tempsens_use == 1;
+		$tempfeuchtsens_use = $row->tempfeuchtsens_use == 1;
 		$time_to_pause = intval($row->time_to_pause);
 		$time_to_run = intval($row->time_to_run);
 		$sollfeucht = intval($row->feuchtsens_feucht);
@@ -31,9 +30,9 @@ while (true) {
 	}
 
 	$feuchtsens_use = false;
-	$tempsens_use = false;
+	$tempfeuchtsens_use = false;
 
-	if ($tempsens_use) {
+	if ($tempfeuchtsens_use) {
 		//check sensor
 		$sensor_output = shell_exec("sudo /root/ex/sensor.sh");
 		preg_match_all("/Temperature = [0-9]{2}\.[0-9]{2} \*C/", $sensor_output, $matches, PREG_OFFSET_CAPTURE);
