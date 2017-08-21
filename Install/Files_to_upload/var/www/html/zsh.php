@@ -176,14 +176,14 @@ if ($werte->tempfeuchtsens_use == 1) {
 				<br />
 			</div>
 			<form action="/zsh.php" method="post" accept-charset="utf-8">
-				<input type="number" style="width: 3em;" name="tempsens_temp" value="<?php echo $werte->tempsens_temp; ?>" min="-20" max="40" placeholder="20">&deg;C
-				<input type="submit" name="submitted" value="Temperatur speichern">
+				<input type="number" style="width: 4em;" name="tempsens_temp" value="<?php echo $werte->ist_temp; ?>" min="-20" max="40" placeholder="20" >&deg;C
+				<input type="submit" name="submitted" value="Temperatur speichern"> Aktuell: 90&deg;C
 			</form>
 			<br />
 			<br />
 			<form action="/zsh.php" method="post" accept-charset="utf-8">
-				<input type="number" style="width: 3em;" name="feuchtsens_feucht" value="<?php echo $werte->feuchtsens_feucht; ?>" min="0" max="100" placeholder="50">%
-				<input type="submit" name="submitted" value="Luftfeuchtigkeit speichern">
+				<input type="number" style="width: 4em;" name="feuchtsens_feucht" value="<?php echo $werte->ist_feucht; ?>" min="0" max="100" placeholder="50">%
+				<input type="submit" name="submitted" value="Luftfeuchtigkeit speichern"> Aktuell: 90%
 			</form>
 			<br />
 			<br />

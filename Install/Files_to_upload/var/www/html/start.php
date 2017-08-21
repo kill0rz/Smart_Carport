@@ -25,23 +25,17 @@ while (true) {
 		$tempfeuchtsens_use = $row->tempfeuchtsens_use == 1;
 		$time_to_pause = intval($row->time_to_pause);
 		$time_to_run = intval($row->time_to_run);
-		$sollfeucht = intval($row->feuchtsens_feucht);
-		$solltemp = intval($row->tempsens_temp);
+		$soll_temp = intval($row->tempsens_temp);
+		$soll_feucht = intval($row->feuchtsens_feucht);
+		$ist_temp = floatval($row->ist_temp);
+		$ist_feucht = floatval($row->ist_feucht);
 	}
 
 	$feuchtsens_use = false;
 	$tempfeuchtsens_use = false;
 
 	if ($tempfeuchtsens_use) {
-		//check sensor
-		$sensor_output = shell_exec("sudo /root/ex/sensor.sh");
-		preg_match_all("/Temperature = [0-9]{2}\.[0-9]{2} \*C/", $sensor_output, $matches, PREG_OFFSET_CAPTURE);
-
-		foreach ($matches[0] as $value) {
-			$sens_temp = trim(str_replace(array("Temperature =", "*C"), "", $value));
-		}
-
-		if ($soll_temp < $sens_temp) {
+		if ($soll_temp < $ist_temp) {
 			if ($debug) {
 				echo "solltemp < senstemp; machan\n";
 			}
@@ -49,6 +43,18 @@ while (true) {
 		} else {
 			if ($debug) {
 				echo "solltemp >= senstemp; machaus\n";
+			}
+			machaus();
+		}
+
+		if ($soll_feucht < $ist_feucht) {
+			if ($debug) {
+				echo "sollfeucht < sensfeucht; machan\n";
+			}
+			machan();
+		} else {
+			if ($debug) {
+				echo "sollfeucht >= sensfeucht; machaus\n";
 			}
 			machaus();
 		}

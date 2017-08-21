@@ -14,7 +14,7 @@ find . -name "*.gz" -type f -delete
 find . -name "*.0" -type f -delete
 
 
-apt clean
+apt-get clean
 
 
 pydf
