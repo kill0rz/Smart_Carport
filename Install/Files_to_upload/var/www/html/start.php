@@ -61,35 +61,6 @@ while (true) {
 		continue;
 	}
 
-	if ($feuchtsens_use) {
-		//check sensor
-		$sensor_output = shell_exec("sudo /root/sh/sensor.sh");
-		preg_match_all("/Humidity = [0-9]{2}\.[0-9]{2} %/", $sensor_output, $matches, PREG_OFFSET_CAPTURE);
-
-		foreach ($matches[0] as $value) {
-			$sens_feucht = trim(str_replace(array("Humidity =", "%"), "", $value));
-		}
-
-		$sql = "UPDATE tbl_settings SET runned='0';";
-		mysqli_query($db, $sql);
-		if ($debug) {
-			echo mysqli_error($db) . "\n";
-		}
-
-		if ($soll_feucht < $sens_feucht) {
-			if ($debug) {
-				echo "sollfeucht < sensfeucht; machan\n";
-			}
-			machan();
-		} else {
-			if ($debug) {
-				echo "sollfeucht >= sensfeucht; machaus\n";
-			}
-			machaus();
-		}
-		continue;
-	}
-
 	if ($startnewintervall) {
 		machan();
 		if ($debug) {

@@ -43,6 +43,19 @@ if (isset($_POST['time_to_pause']) && trim($_POST['time_to_pause']) != '') {
 	file($pi_url . "/set/time_to_pause/?value=" . $newtime);
 }
 
+if (isset($_POST['tempsens_temp']) && trim($_POST['tempsens_temp']) != '') {
+	$newtime = floatval($_POST['tempsens_temp']);
+	file($pi_url . "/set/tempsens_temp/?value=" . $newtime);
+}
+
+if (isset($_POST['tempsens_feucht']) && trim($_POST['tempsens_feucht']) != '') {
+	$newtime = floatval($_POST['tempsens_feucht']);
+	file($pi_url . "/set/tempsens_feucht/?value=" . $newtime);
+}
+
+print_r($_POST);
+die();
+
 sleep(1);
 
 $werte = file($pi_url . "/get");
@@ -176,7 +189,7 @@ if ($werte->tempfeuchtsens_use == 1) {
 				<br />
 			</div>
 			<form action="/zsh.php" method="post" accept-charset="utf-8">
-				<input type="number" style="width: 4em;" name="tempsens_temp" value="<?php echo $werte->soll_temp; ?>" min="-20" max="40" placeholder="20" >&deg;C
+				<input type="number" style="width: 4em;" name="tempsens_temp" value="<?php echo $werte->soll_temp; ?>" min="-20" max="100" placeholder="20" >&deg;C
 				<input type="submit" name="submitted" value="Temperatur speichern"> Aktuell: <?php echo $werte->ist_temp; ?>&deg;C
 			</form>
 			<br />
