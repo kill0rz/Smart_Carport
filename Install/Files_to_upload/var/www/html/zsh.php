@@ -53,9 +53,6 @@ if (isset($_POST['tempsens_feucht']) && trim($_POST['tempsens_feucht']) != '') {
 	file($pi_url . "/set/tempsens_feucht/?value=" . $newtime);
 }
 
-print_r($_POST);
-die();
-
 sleep(1);
 
 $werte = file($pi_url . "/get");
