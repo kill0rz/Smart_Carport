@@ -15,14 +15,14 @@ CREATE TABLE IF NOT EXISTS `tbl_settings` (
   `runned` int(11) DEFAULT '0',
   `paused` int(11) DEFAULT '0',
   `tempfeuchtsens_use` int(11) NOT NULL,
-  `tempsens_temp` int(11) NOT NULL,
-  `feuchtsens_feucht` int(11) NOT NULL,
+  `soll_temp` int(11) NOT NULL,
+  `soll_feucht` int(11) NOT NULL,
   `time_to_pause` double NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 
-INSERT INTO `tbl_settings` (`id`, `stopnow`, `runforever`, `time_to_run`, `startnewintervall`, `should_be_running`, `runned`, `feuchtsens_use`, `tempsens_use`, `tempsens_temp`, `feuchtsens_feucht`, `time_to_pause`) VALUES
-(1, 1, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO `tbl_settings` (`id`, `stopnow`, `runforever`, `time_to_run`, `startnewintervall`, `should_be_running`, `runned`, `tempsens_use`, `soll_temp`, `soll_feucht`, `time_to_pause`) VALUES
+(1, 1, 0, 20, 0, 0, 0, 0, 0, 0, 0);
 
 ALTER TABLE `tbl_settings`
  ADD PRIMARY KEY (`id`);

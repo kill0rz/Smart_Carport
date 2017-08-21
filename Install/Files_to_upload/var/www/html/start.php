@@ -25,8 +25,8 @@ while (true) {
 		$tempfeuchtsens_use = $row->tempfeuchtsens_use == 1;
 		$time_to_pause = intval($row->time_to_pause);
 		$time_to_run = intval($row->time_to_run);
-		$soll_temp = intval($row->tempsens_temp);
-		$soll_feucht = intval($row->feuchtsens_feucht);
+		$soll_temp = intval($row->soll_temp);
+		$soll_feucht = intval($row->soll_feucht);
 		$ist_temp = floatval($row->ist_temp);
 		$ist_feucht = floatval($row->ist_feucht);
 	}
