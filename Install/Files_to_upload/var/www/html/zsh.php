@@ -4,7 +4,6 @@ error_reporting(E_ALL);
 
 include 'db.php';
 
-$pi_url = "http://192.168.1.31";
 $bildurl = $pi_url;
 $bildaus = "/schalter_aus.jpg";
 $bildan = "/schalter_an.jpg";
@@ -21,6 +20,7 @@ if (isset($_POST['action']) && trim($_POST['action']) != '') {
 
 		case 'startnewintervall':
 			file($pi_url . "/set/startnewintervall/?value=1");
+			sleep(1);
 			break;
 
 		case 'tempfeuchtsens_use_on':
@@ -76,7 +76,7 @@ if ($werte->tempfeuchtsens_use == 1) {
 	$tempsens_pic = $bildurl . $bildaus;
 }
 
-if ($werte->is_running == 1 && $werte->runforever == 0 && $werte->stopnow == 0) {
+if ($werte->is_running == 1 && $werte->runforever == 0 && $werte->stopnow == 0 && $werte->tempfeuchtsens_use == 0) {
 	$startnewintervall_pic = $bildurl . $bildan;
 } else {
 	$startnewintervall_pic = $bildurl . $bildaus;
@@ -187,13 +187,13 @@ if ($werte->tempfeuchtsens_use == 1) {
 			</div>
 			<form action="/zsh.php" method="post" accept-charset="utf-8">
 				<input type="number" style="width: 4em;" name="tempsens_temp" value="<?php echo $werte->soll_temp; ?>" min="-20" max="100" placeholder="20" >&deg;C
-				<input type="submit" name="submitted" value="Temperatur speichern"> Aktuell: <?php echo $werte->ist_temp; ?>&deg;C
+				<input type="submit" name="submitted" value="Temperatur speichern"> Aktuell: <?php echo $werte->ist_temp; ?>&deg;C - <b>Muss &gt; sein, damit Heizl&uuml;fter angeht!</b>
 			</form>
 			<br />
 			<br />
 			<form action="/zsh.php" method="post" accept-charset="utf-8">
-				<input type="number" style="width: 4em;" name="feuchtsens_feucht" value="<?php echo $werte->soll_feucht; ?>" min="0" max="100" placeholder="50">%
-				<input type="submit" name="submitted" value="Luftfeuchtigkeit speichern"> Aktuell: <?php echo $werte->ist_feucht; ?>%
+				<input type="number" style="width: 4em;" name="tempsens_feucht" value="<?php echo $werte->soll_feucht; ?>" min="0" max="100" placeholder="50">%
+				<input type="submit" name="submitted" value="Luftfeuchtigkeit speichern"> <?php echo $werte->ist_feucht; ?>% - <b>Muss &lt; sein, damit Heizl&uuml;fter angeht!</b>
 			</form>
 			<br />
 			<br />

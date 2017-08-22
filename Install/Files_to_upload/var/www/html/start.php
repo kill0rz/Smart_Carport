@@ -12,51 +12,35 @@ init();
 
 while (true) {
 	sleep(1);
-	$sql = "SELECT * FROM tbl_settings LIMIT 1;";
-	$result = mysqli_query($db, $sql);
-	if ($debug) {
-		echo mysqli_error($db) . "\n";
-	}
 
-	while ($row = mysqli_fetch_object($result)) {
-		$runforever = $row->runforever == 1;
-		$startnewintervall = $row->startnewintervall == 1;
-		$stopnow = $row->stopnow == 1;
-		$tempfeuchtsens_use = $row->tempfeuchtsens_use == 1;
-		$time_to_pause = intval($row->time_to_pause);
-		$time_to_run = intval($row->time_to_run);
-		$soll_temp = intval($row->soll_temp);
-		$soll_feucht = intval($row->soll_feucht);
-		$ist_temp = floatval($row->ist_temp);
-		$ist_feucht = floatval($row->ist_feucht);
-	}
+	$row = file($pi_url . "/get");
+	$row = json_decode($row[0]);
 
-	$feuchtsens_use = false;
-	$tempfeuchtsens_use = false;
+	$runforever = $row->runforever == 1;
+	$startnewintervall = $row->startnewintervall == 1;
+	$stopnow = $row->stopnow == 1;
+	$tempfeuchtsens_use = $row->tempfeuchtsens_use == 1;
+	$time_to_pause = intval($row->time_to_pause);
+	$time_to_run = intval($row->time_to_run);
+	$soll_temp = intval($row->soll_temp);
+	$soll_feucht = intval($row->soll_feucht);
+	$ist_temp = floatval($row->ist_temp);
+	$ist_feucht = floatval($row->ist_feucht);
 
 	if ($tempfeuchtsens_use) {
-		if ($soll_temp < $ist_temp) {
-			if ($debug) {
-				echo "solltemp < senstemp; machan\n";
-			}
+		// doppelte Abfrage, um debug ordentlich handeln zu können
+		if ($soll_feucht < $ist_feucht || $soll_temp > $ist_temp) {
 			machan();
 		} else {
-			if ($debug) {
-				echo "solltemp >= senstemp; machaus\n";
-			}
+			echo "Tempsonsor zu wenig; machaus\n";
 			machaus();
 		}
 
-		if ($soll_feucht < $ist_feucht) {
-			if ($debug) {
-				echo "sollfeucht < sensfeucht; machan\n";
-			}
-			machan();
-		} else {
-			if ($debug) {
-				echo "sollfeucht >= sensfeucht; machaus\n";
-			}
-			machaus();
+		if ($debug && $soll_temp > $ist_temp) {
+			echo "solltemp > senstemp; machan\n";
+		}
+		if ($debug && $soll_feucht < $ist_feucht) {
+			echo "sollfeucht < sensfeucht; machan\n";
 		}
 		continue;
 	}

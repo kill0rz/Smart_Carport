@@ -16,6 +16,8 @@ if (mysqli_errno($db)) {
 	exit();
 }
 
+$pi_url = "http://192.168.1.31";
+
 function machan() {
 	global $db, $debug;
 	@shell_exec("sudo gpio -g write 23 1");
